@@ -445,13 +445,13 @@ public static class MarchingCubesBasicPort
                     cell.p = new Vector3[]
                     {
                         new Vector3(x+0,y+0,z+0),
-                        new Vector3(x+0,y+0,z+1),
-                        new Vector3(x+1,y+0,z+1),
                         new Vector3(x+1,y+0,z+0),
+                        new Vector3(x+1,y+0,z+1),
+                        new Vector3(x+0,y+0,z+1),
                         new Vector3(x+0,y+1,z+0),
-                        new Vector3(x+0,y+1,z+1),
+                        new Vector3(x+1,y+1,z+0),
                         new Vector3(x+1,y+1,z+1),
-                        new Vector3(x+1,y+1,z+0)
+                        new Vector3(x+0,y+1,z+1)
                     };
 
                     //transform cell corners + calculate field values
@@ -462,14 +462,14 @@ public static class MarchingCubesBasicPort
                         cell.val[i] = func(cell.p[i]);
                     }
 
-                    //polygonise and store vertices (note: had to tweak winding order to make unity happy!)
+                    //polygonise and store vertices
                     int numTriangles = Polygonise(cell, 0.0f, tempTriangles);
                     for (int i = 0; i < numTriangles; i++)
                     {
                         int vidx = vertices.Count;
                         indices.Add(vidx + 0);
-                        indices.Add(vidx + 2);
                         indices.Add(vidx + 1);
+                        indices.Add(vidx + 2);
                         vertices.Add(tempTriangles[i].p[0]);
                         vertices.Add(tempTriangles[i].p[1]);
                         vertices.Add(tempTriangles[i].p[2]);

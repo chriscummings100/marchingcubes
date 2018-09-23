@@ -26,7 +26,7 @@ public class Test : MonoBehaviour
         float gridRad = rad * 1.25f;
         int cells = 50;
 
-        GetComponent<MeshFilter>().sharedMesh = MarchingCubesBasicPort.BuildUnityMesh(-Vector3.one * gridRad, 2 * gridRad, cells, (Vector3 pos) =>
+        GetComponent<MeshFilter>().sharedMesh = MarchingCubes.BuildUnityMesh(-Vector3.one * gridRad, 2 * gridRad, cells, (Vector3 pos) =>
         {
             return SDFOps.Union(SDFOps.Sphere(pos, new Vector3(0, 0, -rad * 0.5f), rad * 0.65f), SDFOps.Sphere(pos, new Vector3(0, 0, rad * 0.5f), rad * 0.65f));
         });
@@ -38,7 +38,7 @@ public class Test : MonoBehaviour
         float gridRad = Mathf.Max(halfExt.x,halfExt.y,halfExt.z)*1.25f;
         int cells = 50;
 
-        GetComponent<MeshFilter>().sharedMesh = MarchingCubesBasicPort.BuildUnityMesh(-Vector3.one * gridRad, 2 * gridRad, cells, (Vector3 pos) =>
+        GetComponent<MeshFilter>().sharedMesh = MarchingCubes.BuildUnityMesh(-Vector3.one * gridRad, 2 * gridRad, cells, (Vector3 pos) =>
         {
             return SDFOps.Box(pos, Vector3.zero, halfExt);
         });
@@ -49,7 +49,7 @@ public class Test : MonoBehaviour
         float gridRad = 1;
         int cells = 50;
 
-        GetComponent<MeshFilter>().sharedMesh = MarchingCubesBasicPort.BuildUnityMesh(-Vector3.one * gridRad, 2 * gridRad, cells, (Vector3 pos) =>
+        GetComponent<MeshFilter>().sharedMesh = MarchingCubes.BuildUnityMesh(-Vector3.one * gridRad, 2 * gridRad, cells, (Vector3 pos) =>
         {
             float d = SDFOps.Box(pos, Vector3.zero, new Vector3(0.5f,0.05f, 0.05f));
             d = SDFOps.Blend(d, SDFOps.Sphere(pos, new Vector3(-0.5f, 0.0f, 0.0f), 0.25f), 0.2f);
